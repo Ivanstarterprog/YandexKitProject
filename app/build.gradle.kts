@@ -23,8 +23,14 @@ android {
         }
 
         val apiKey = properties.getProperty("YANDEX_MAPKIT_API_KEY")
+        buildConfigField(type = "String", name = "YANDEX_API_KEY", value = "\"$apiKey\"")
         manifestPlaceholders["yandexMapKitApiKey"] = apiKey
 
+    }
+
+    buildFeatures {
+        viewBinding=true
+        buildConfig=true
     }
 
     buildTypes {
@@ -53,6 +59,8 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.maps.mobile)
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.core.ktx.v1120)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
