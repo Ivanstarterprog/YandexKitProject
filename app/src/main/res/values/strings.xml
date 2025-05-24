@@ -3,4 +3,10 @@
     <string name="MyCity">Кемерово</string>
     <string name="WhereIAm">Моё местоположение</string>
     <string name="Clear">Очистить</string>
+    <string name="PermisionDenied">Разрешение на местоположение отклонено</string>
+    <string name="LocationSystemReset">Служба местоположения сброшена. Попробуйте снова.</string>
+    <string name="CantGetLocation">Местоположение недоступно. Проверьте настройки GPS.</string>
+    <string name="CameraCenteredOnUser">Центрировано на вашем местоположении</string>
+    <string name="MakingRouteError">Ошибка построения маршрута: %1$s</string>
+    <string name="RouteReset">Маршрут сброшен</string>
 </resources>

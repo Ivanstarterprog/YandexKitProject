@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(), InputListener {
         if (isGranted) {
             requestUserLocation()
         } else {
-            Toast.makeText(this, "Разрешение на местоположение отклонено", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.PermisionDenied), Toast.LENGTH_LONG).show()
         }
     }
 
@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity(), InputListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize map
         binding.mapVMain.mapWindow.map.move(
             CameraPosition(Point(55.751574, 37.573856), zoom, 0f, 0f),
             Animation(Animation.Type.SMOOTH, 0f),
@@ -60,10 +59,8 @@ class MainActivity : AppCompatActivity(), InputListener {
         )
         binding.mapVMain.mapWindow.map.addInputListener(this)
 
-        // Initialize location manager
         locationManager = MapKitFactory.getInstance().createLocationManager()
 
-        // Button listeners
         binding.btnKemerovo.setOnClickListener {
             zoom = 15f
             binding.mapVMain.mapWindow.map.move(
@@ -100,7 +97,8 @@ class MainActivity : AppCompatActivity(), InputListener {
                     Animation(Animation.Type.SMOOTH, 0.5f),
                     null
                 )
-                Toast.makeText(this@MainActivity, "Центрировано на вашем местоположении", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity,
+                    getString(R.string.CameraCenteredOnUser), Toast.LENGTH_SHORT).show()
             }
 
             override fun onLocationStatusUpdated(status: LocationStatus) {
@@ -109,7 +107,7 @@ class MainActivity : AppCompatActivity(), InputListener {
                         Log.e("MapKit", "Лееее, где мы")
                         Toast.makeText(
                             this@MainActivity,
-                            "Местоположение недоступно. Проверьте настройки GPS.",
+                            getString(R.string.CantGetLocation),
                             Toast.LENGTH_LONG
                         ).show()
                     }
@@ -121,7 +119,7 @@ class MainActivity : AppCompatActivity(), InputListener {
                         Log.w("MapKit", "Location service был сброшен")
                         Toast.makeText(
                             this@MainActivity,
-                            "Служба местоположения сброшена. Попробуйте снова.",
+                            getString(R.string.LocationSystemReset),
                             Toast.LENGTH_LONG
                         ).show()
                     }
@@ -190,7 +188,7 @@ class MainActivity : AppCompatActivity(), InputListener {
                 override fun onDrivingRoutesError(error: Error) {
                     Toast.makeText(
                         this@MainActivity,
-                        "Ошибка построения маршрута: $error",
+                        getString(R.string.MakingRouteError, error),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -214,7 +212,7 @@ class MainActivity : AppCompatActivity(), InputListener {
         secondPoint = null
         drivingSession?.cancel()
         drivingSession = null
-        Toast.makeText(this, "Маршрут сброшен", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.RouteReset), Toast.LENGTH_SHORT).show()
     }
 
     override fun onStart() {

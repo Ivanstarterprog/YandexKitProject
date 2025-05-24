@@ -60,7 +60,6 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.maps.mobile)
     implementation(libs.androidx.activity.ktx)
-    implementation(libs.androidx.core.ktx.v1120)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
